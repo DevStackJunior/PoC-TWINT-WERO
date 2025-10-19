@@ -10,7 +10,7 @@ export default class MerchantsController {
 
   // Crée un nouveau marchand
   public async store({ request, response }: HttpContext) {
-    const data = request.only(['name', 'address', 'city', 'postal_code', 'balance', 'currency_id'])
+    const data = request.only(['name', 'address', 'city', 'postalCode', 'balance', 'currencyId'])
 
     try {
       const merchant = await Merchant.create(data)
@@ -36,14 +36,7 @@ export default class MerchantsController {
   public async update({ params, request, response }: HttpContext) {
     try {
       const merchant = await Merchant.findOrFail(params.id)
-      const data = request.only([
-        'name',
-        'address',
-        'city',
-        'postal_code',
-        'balance',
-        'currency_id',
-      ])
+      const data = request.only(['name', 'address', 'city', 'postalCode', 'balance', 'currencyId'])
       merchant.merge(data)
       await merchant.save()
       await merchant.load('currency')

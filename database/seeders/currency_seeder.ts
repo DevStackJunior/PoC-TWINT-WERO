@@ -31,7 +31,7 @@ export default class extends BaseSeeder {
         symbol: 'kr',
         created_at: new Date(),
         updated_at: new Date(),
-      },      
+      },
     ])
   }
 }

@@ -13,7 +13,7 @@ export default class WalletsController {
 
   public async create({ request, response }: HttpContext) {
     try {
-      const payload = request.only(['name', 'userId', 'currencyId', 'balance_cents'])
+      const payload = request.only(['name', 'userId', 'currencyId', 'balanceCents'])
       const wallet = await Wallet.create(payload)
       return response.created(wallet)
     } catch (error) {
@@ -35,7 +35,7 @@ export default class WalletsController {
   public async update({ params, request, response }: HttpContext) {
     try {
       const wallet = await Wallet.findOrFail(params.id)
-      const payload = request.only(['name', 'userId', 'currencyId', 'balance_cents'])
+      const payload = request.only(['name', 'userId', 'currencyId', 'balanceCents'])
       wallet.merge(payload)
       await wallet.save()
       return response.ok(wallet)

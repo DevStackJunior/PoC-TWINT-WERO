@@ -97,11 +97,8 @@ import QRCode from 'qrcode'
       return
     }
 
-    // Convertir en centimes
-    const cents = Math.round(amtValue * 100)
-
     // Créer le payload currency, makeNonce()
-    const payload = ['LZPAY', merchId, cents, currency].join('|')
+    const payload = ['LZPAY', merchId, amtValue, currency].join('|')
 
     // Nettoyer le conteneur
     elements.qrcodeDiv.innerHTML = ''
@@ -113,7 +110,7 @@ import QRCode from 'qrcode'
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              amount: cents,
+              amount: amtValue,
               userId: 1,
               merchantId: merchId,
               currencyId: currency,

@@ -39,8 +39,8 @@ router
     ])
 
     router.patch('pay', [PaymentController, 'pay'])
-    router.get('getDataA', [DatajsonsController, 'getDataA'])
-    router.get('getDataB', [DatajsonsController, 'getDataB'])
+    router.get('getDataTWINT', [DatajsonsController, 'getDataTWINT'])
+    router.get('getDataWERO', [DatajsonsController, 'getDataWERO'])
   })
   .prefix('/api')
 
