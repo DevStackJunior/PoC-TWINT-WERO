@@ -54,7 +54,7 @@ mais leurs **contenus diffèrent** (valeurs, montants, devises, origine, etc.).
 ### 3. Processus de fusion et de lecture
 
 1. **Chargement initial**  
-   - Les fichiers `/data/a.json` et `/data/b.json` sont lus par `DataLoaderService`.  
+   - Les fichiers `/data/TX_TWINT.json` et `/data/TX_WERO.json` sont lus par `DataLoaderService`.  
    - Chaque entrée est validée, enrichie et préparée pour insertion.  
 
 2. **Insertion et fusion en base**  
@@ -75,8 +75,9 @@ Avant insertion en base, un service de normalisation applique :
 
 - ✅ **Validation de structure** (`user_id`, `merchant_id`, `amount`, `currency_id`, etc.)  
 - 🔄 **Conversion de statuts** → normes ISO 20022 :  
-  `completed` → `BOOKED`, `pending` → `PENDING`, `failed` → `REJECTED`  
-- 💱 **Uniformisation des devises** selon **ISO 4217** (CHF, EUR, etc.) 
+  `completed` → `BOOKED`,
+  `pending` → `PENDING`,
+  `failed` → `REJECTED`
 
 ---
 
@@ -86,8 +87,8 @@ Avant insertion en base, un service de normalisation applique :
 /app
  ├── controllers/              # Contrôleurs métier : lecture et fusion des données JSON
  ├── data/                     # Données JSON brutes simulant deux environnements bancaires
- │   ├── a.json                # 🇨🇭 Données TWINT / Swiss Payment Standard
- │   └── b.json                # 🇪🇺 Données WERO / PSD2 Berlin Group
+ │   ├── TX_TWINT.json                # 🇨🇭 Données TWINT / Swiss Payment Standard
+ │   └── TX_WERO.json                # 🇪🇺 Données WERO / PSD2 Berlin Group
  ├── exceptions/               # Gestion des erreurs et exceptions globales
  ├── middleware/               # Middlewares AdonisJS (container bindings, etc.)
  │   └── container_bindings_middleware.ts
@@ -127,5 +128,6 @@ Avant insertion en base, un service de normalisation applique :
  │   │   └── home.edge         # Vue d’accueil / overview
  │
 /start                         # Initialisation (kernel, routes, providers, etc.)
+
 
 
