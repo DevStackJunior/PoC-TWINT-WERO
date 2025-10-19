@@ -77,7 +77,7 @@
             <td>${new Date(t.createdAt).toLocaleString('fr-FR')}</td>
             <td>${t.userId}</td>
             <td>${t.merchantId}</td>
-            <td><strong>${formatAmount(t.amount)}</strong></td>
+            <td><strong>${t.amount}</strong></td>
             <td>${t.currencyId}</td>
             <td>${t.status}</td>
           </tr>

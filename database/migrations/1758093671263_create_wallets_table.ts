@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.string('name').notNullable()
       table.enum('type', ['client', 'merchant']).notNullable()
       table.integer('balance_cents').notNullable().defaultTo(0)
+      table.integer('currency_id').unsigned().notNullable()
       table.timestamps(true)
     })
   }

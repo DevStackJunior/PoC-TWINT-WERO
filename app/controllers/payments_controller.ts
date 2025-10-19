@@ -36,12 +36,10 @@ export default class PaymentController {
       // await merchantWallet.save()
 
       const transaction = await Transaction.query()
-        .where('user_id', 1)
-        .where('merchant_id', 1)
+        .where('userId', 1)
+        .where('merchantId', 1)
         .where('format', format)
         .first()
-
-      console.log('transaction', transaction)
 
       if (!transaction) {
         return response.notFound({ error: 'Transaction not found' })

@@ -1,14 +1,16 @@
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'currencies'
+  protected tableName = 'users'
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
-      table.string('code', 3).notNullable().unique() // CHF, EUR, GBP, etc.
-      table.string('name', 100).notNullable() // Franc suisse, Euro, etc.
-      table.string('symbol', 10).notNullable() // CHF, €, £, etc.
+      table.string('pseudo', 100).notNullable().unique()
+      table.string('email', 255).notNullable().unique()
+      table.decimal('balance', 10, 2).notNullable().defaultTo(0)
+      table.integer('currency_id').unsigned().notNullable()
+      //table.foreign('currency_id').references('id').inTable('currencies').onDelete('RESTRICT')
       table.timestamp('created_at', { useTz: true }).notNullable()
       table.timestamp('updated_at', { useTz: true }).notNullable()
     })

@@ -5,7 +5,7 @@ export default class TransactionsController {
   /**
    * Display a list of resource
    */
-  async index({ response, request }: HttpContext) {
+  async index({ response }: HttpContext) {
     try {
       const transactions = await Transaction.query()
         .preload('currency')
@@ -59,7 +59,7 @@ export default class TransactionsController {
       const merchantId = params.merchantId
 
       const transaction = await Transaction.query()
-        .where('merchant_id', merchantId)
+        .where('merchantId', merchantId)
         .preload('currency')
         .preload('user')
         .preload('merchant')
@@ -75,8 +75,8 @@ export default class TransactionsController {
       const userId = params.userId
 
       const transaction = await Transaction.query()
-        .where('user_id', userId)
-        .orderBy('created_at', 'desc')
+        .where('userId', userId)
+        .orderBy('createdAt', 'desc')
         .first()
 
       return response.ok(transaction)
@@ -90,8 +90,8 @@ export default class TransactionsController {
       const userId = params.userId
 
       const transaction = await Transaction.query()
-        .where('user_id', userId)
-        .orderBy('created_at', 'desc')
+        .where('userId', userId)
+        .orderBy('createdAt', 'desc')
 
       return response.ok(transaction)
     } catch (error) {
@@ -107,7 +107,7 @@ export default class TransactionsController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({}: HttpContext) {}
 
   /**
    * Delete record

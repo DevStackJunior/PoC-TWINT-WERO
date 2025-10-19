@@ -1,0 +1,167 @@
+[
+  {
+    "transaction": {
+      "amount": 12.5,
+      "status": "completed",
+      "description": "Café et croissant au Café Romand",
+      "qr_code": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAYAAABRRIOnAAA...",
+      "format": "CHPAY|1|SWISSQR|2025",
+      "user_id": 4,
+      "merchant_id": 2,
+      "currency_id": 1
+    },
+    "user": {
+      "pseudo": "leaM",
+      "email": "lea.moret@example.com",
+      "balance": 155.4,
+      "currency_id": 1
+    },
+    "wallet": {
+      "name": "Voyage",
+      "currency_id": 1,
+      "balance_cents": 245.3,
+      "type": "client"
+    },
+    "merchant": {
+      "name": "Café Romand Lausanne",
+      "address": "Place Saint-François 3, 1003 Lausanne",
+      "city": "Lausanne",
+      "postal_code": 1001,
+      "balance": 10304,
+      "currency_id": 1
+    },
+    "currency": {
+      "code": "USD",
+      "name": "Dollar",
+      "symbol": "$"
+    }
+  },
+  {
+    "transaction": {
+      "amount": 45.9,
+      "status": "completed",
+      "description": "Déjeuner au Restaurant du Port",
+      "qr_code": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAAC0...",
+      "format": "CHPAY|1|SWISSQR|2025",
+      "user_id": 2,
+      "merchant_id": 3,
+      "currency_id": 1
+    },
+    "user": {
+      "pseudo": "marcDi",
+      "email": "marc.duval@example.com",
+      "balance": 82.1,
+      "currency_id": 1
+    },
+    "wallet": {
+      "name": "Quotidien",
+      "currency_id": 1,
+      "balance_cents": 120.5,
+      "type": "client"
+    },
+    "merchant": {
+      "name": "Restaurant du Port",
+      "address": "Quai Perdonnet 7, 1800 Vevey",
+      "city": "Vevey",
+      "postal_code": 1800,
+      "balance": 20150,
+      "currency_id": 1
+    }
+  },
+  {
+    "transaction": {
+      "amount": 3.8,
+      "status": "pending",
+      "description": "Expresso à Coffee Lab",
+      "qr_code": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIYAAACGCAYAAADy...",
+      "format": "CHPAY|1|SWISSQR|2025",
+      "user_id": 5,
+      "merchant_id": 1,
+      "currency_id": 1
+    },
+    "user": {
+      "pseudo": "noahR",
+      "email": "noah.roux@example.com",
+      "balance": 54.7,
+      "currency_id": 1
+    },
+    "wallet": {
+      "name": "Loisirs",
+      "currency_id": 1,
+      "balance_cents": 65.2,
+      "type": "client"
+    },
+    "merchant": {
+      "name": "Coffee Lab Genève",
+      "address": "Rue du Rhône 15, 1204 Genève",
+      "city": "Genève",
+      "postal_code": 1204,
+      "balance": 30560,
+      "currency_id": 1
+    }
+  },
+  {
+    "transaction": {
+      "amount": 78.2,
+      "status": "completed",
+      "description": "Achat de billets de cinéma",
+      "qr_code": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJMAAACMCAYAAADc...",
+      "format": "CHPAY|1|SWISSQR|2025",
+      "user_id": 2,
+      "merchant_id": 1,
+      "currency_id": 1
+    },
+    "user": {
+      "pseudo": "amelieC",
+      "email": "amelie.caron@example.com",
+      "balance": 300.8,
+      "currency_id": 1
+    },
+    "wallet": {
+      "name": "Divertissement",
+      "currency_id": 1,
+      "balance_cents": 452.6,
+      "type": "client"
+    },
+    "merchant": {
+      "name": "Cinéma Capitole",
+      "address": "Avenue du Théâtre 5, 1005 Lausanne",
+      "city": "Lausanne",
+      "postal_code": 1005,
+      "balance": 50670,
+      "currency_id": 1
+    }
+  },
+  {
+    "transaction": {
+      "amount": 9.5,
+      "status": "failed",
+      "description": "Tentative de paiement — Boulangerie Artisanale",
+      "qr_code": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH8AAACBCAYAAACc...",
+      "format": "CHPAY|1|SWISSQR|2025",
+      "user_id": 3,
+      "merchant_id": 1,
+      "currency_id": 1
+    },
+    "user": {
+      "pseudo": "julienB",
+      "email": "julien.bosshard@example.com",
+      "balance": 27.6,
+      "currency_id": 1
+    },
+    "wallet": {
+      "name": "Courses",
+      "currency_id": 1,
+      "balance_cents": 38.7,
+      "type": "client"
+    },
+    "merchant": {
+      "name": "Boulangerie Artisanale",
+      "address": "Rue Centrale 14, 1260 Nyon",
+      "city": "Nyon",
+      "postal_code": 1260,
+      "balance": 4087,
+      "currency_id": 1
+    }
+  }
+]

@@ -12,6 +12,8 @@ export default class Transaction extends BaseModel {
   @column()
   declare amount: number
 
+  //assignation clefs étrangères dans colonnes
+  //nécessite que dans le JSON d'import les propriétés soient existantes
   @column()
   declare userId: number
 
