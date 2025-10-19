@@ -30,7 +30,7 @@ Aucune API externe n’est utilisée — toutes les données sont **chargées lo
 ### 1. Environnement & persistance
 
 - Utilisation d’un **conteneur MySQL (Docker)** pour centraliser les données fusionnées.  
-- **Lecture et importation** des fichiers `/data/a.json` et `/data/b.json` dans la base à l’initialisation du projet.  
+- **Lecture et importation** des fichiers `/data/TX_TWINT.json` et `/data/TX_WERO.json` dans la base à l’initialisation du projet.  
 - **Aucune route API brute exposée** : les données sont exploitées depuis le dossier `/data/`.  
 - Possibilité d’utiliser des **scripts de seeding AdonisJS** pour automatiser le chargement.
 
@@ -128,6 +128,7 @@ Avant insertion en base, un service de normalisation applique :
  │   │   └── home.edge         # Vue d’accueil / overview
  │
 /start                         # Initialisation (kernel, routes, providers, etc.)
+
 
 
 
