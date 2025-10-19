@@ -43,8 +43,8 @@ mais leurs **contenus diffèrent** (valeurs, montants, devises, origine, etc.).
 
 | Fichier       | Origine | Description | Format |
 |----------------|----------|-------------|---------|
-| `/data/TX_TWINT.json` | 🇨🇭 **App A – TWINT / Swiss Payment Standard** | Données simulées au format des normes suisses (TWINT / Swiss QR Bill / ISO 20022) |
-| `/data/TX_WERO.json` | 🇪🇺 **App B – WERO / PSD2 Berlin Group** | Données simulées au format des normes européennes (Open Banking / PSD2 Berlin Group) |
+| `/data/TX_TWINT.json` | 🇨🇭 **App A – TWINT / Swiss Payment Standard** | Données simulées au format des normes suisses (TWINT micro-transaction) | TWINT / Swiss QR Bill / ISO 20022
+| `/data/TX_WERO.json` | 🇪🇺 **App B – WERO / PSD2 Berlin Group** | Données simulées au format des normes européennes (Open Banking EU) | PSD2 Berlin Group
 
 > 🔹 Les deux fichiers partagent le **même format JSON unifié**, garantissant une intégration directe.  
 > Seuls les contenus varient selon le contexte (devise, identifiant, typologie, etc.).
@@ -127,4 +127,5 @@ Avant insertion en base, un service de normalisation applique :
  │   │   └── home.edge         # Vue d’accueil / overview
  │
 /start                         # Initialisation (kernel, routes, providers, etc.)
+
 
