@@ -46,9 +46,6 @@ mais leurs **contenus diffèrent** (valeurs, montants, devises, origine, etc.).
 | `/data/TX_TWINT.json` | 🇨🇭 **App A – TWINT / Swiss Payment Standard** | Données simulées au format des normes suisses (TWINT micro-transaction) | TWINT / Swiss QR Bill / ISO 20022
 | `/data/TX_WERO.json` | 🇪🇺 **App B – WERO / PSD2 Berlin Group** | Données simulées au format des normes européennes (Open Banking EU) | PSD2 Berlin Group
 
-> 🔹 Les deux fichiers partagent le **même format JSON unifié**, garantissant une intégration directe.  
-> Seuls les contenus varient selon le contexte (devise, identifiant, typologie, etc.).
-
 ---
 
 ### 3. Processus de fusion et de lecture
@@ -60,8 +57,8 @@ mais leurs **contenus diffèrent** (valeurs, montants, devises, origine, etc.).
 2. **Insertion et fusion en base**  
    - Les enregistrements sont insérés dans MySQL.  
    - Une table unique regroupe toutes les transactions avec un champ d’origine :  
-     - `"origin": "SWISS"` pour `/data/a.json`  
-     - `"origin": "EU"` pour `/data/b.json`.
+     - `"origin": "SWISS"` pour `/data/TX_TWINT.json`  
+     - `"origin": "EU"` pour `/data/TX_WERO.json`.
 
 3. **Lecture depuis `/resources/`**  
    - Les vues, scripts ou exports dans `/resources/` accèdent directement à la base.  
@@ -128,6 +125,7 @@ Avant insertion en base, un service de normalisation applique :
  │   │   └── home.edge         # Vue d’accueil / overview
  │
 /start                         # Initialisation (kernel, routes, providers, etc.)
+
 
 
 
