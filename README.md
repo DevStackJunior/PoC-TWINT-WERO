@@ -37,15 +37,14 @@ No external API is used—all data is **loaded locally**, **merged into a MySQL 
 
 ---
 
-### 2. Local data sources
+## 2. Local Data Sources
 
-The two JSON files are **identical in structure** (same schema, same keys),  
-but their **contents differ** (values, amounts, currencies, origin, etc.).
+The two JSON files are **identical in structure** (same schema, same keys), but their **contents differ** (values, amounts, currencies, origin, etc.).
 
-| File       | Origin | Description | Format |
-|----------------|--------- -|-------------|---------|
-| `/data/TX_TWINT.json` | 🇨🇭 **App A – TWINT / Swiss Payment Standard** | Simulated data in Swiss standard format (TWINT micro-transaction) | TWINT / Swiss QR Bill / ISO 20022
-| `/data/TX_WERO.json` | 🇪🇺 **App B – WERO / PSD2 Berlin Group** | Simulated data in European standard format (Open Banking EU) | PSD2 Berlin Group
+| File | Origin | Description | Format |
+| :--- | :--- | :--- | :--- |
+| `/data/TX_TWINT.json` | 🇨🇭 **App A – TWINT** | Simulated Swiss micro-transactions. | TWINT / ISO 20022 |
+| `/data/TX_WERO.json` | 🇪🇺 **App B – WERO** | Simulated European Open Banking data. | PSD2 Berlin Group |
 
 ---
 
@@ -127,3 +126,4 @@ Before insertion into the database, a normalization service applies:
  │   │   └── home.edge         # Home view / overview
  │
 /start                         # Initialization (kernel, routes, providers, etc.)
+
