@@ -1,112 +1,114 @@
-# 💳 Proof of Concept – Fusion de 2 applications financières avec AdonisJS
+# 💳 Proof of Concept – Merging two financial applications with AdonisJS
 
-## 🧠 Contexte
+## 🧠 Context
 
-Ce Proof of Concept (PoC) démontre la faisabilité technique de la **fusion** de formats transactionnels différents, en provenance de **deux applications financières**, au sein d’une plateforme unifiée à l’aide du framework **AdonisJS**.
+This Proof of Concept (PoC) demonstrates the technical feasibility of **merging** different transactional formats from **two financial applications** into a unified platform using the **AdonisJS** framework.
 
-Les sources de données sont **deux fichiers JSON locaux** représentant deux environnements bancaires différents :  
+The data sources are **two local JSON files** representing two different banking environments:  
 
-🇨🇭 **TWINT (normes suisses)** et 🇪🇺 **WERO (normes européennes)**.
+🇨🇭 **TWINT (Swiss standards)** and 🇪🇺 **WERO (European standards)**.
 
-Aucune API externe n’est utilisée — toutes les données sont **chargées localement**, **fusionnées en base MySQL**, puis **consultées depuis le dossier `/resources/`**.
-
----
-
-## 🎯 Objectifs du PoC
-
-### Objectifs principaux
-
-- **Fusion des données** de deux systèmes financiers distincts (App A et App B).  
-- **Chargement depuis fichiers JSON locaux** sans dépendance externe.  
-- **Architecture modulaire** pour isoler la logique de chaque application.  
-- **Gestion commune de la logique métier**, services et schémas.  
-- **Fusion et transformation des données** dans un format unique.  
-- **Migration opérationnelle** vers une base SQL complète.  
+No external API is used—all data is **loaded locally**, **merged into a MySQL database**, and then **accessed from the `/resources/` folder**.
 
 ---
 
-## ⚙️ Objectifs techniques
+## 🎯 PoC objectives
 
-### 1. Environnement & persistance
+### Main objectives
 
-- Utilisation d’un **conteneur MySQL (Docker)** pour centraliser les données fusionnées.  
-- **Lecture et importation** des fichiers `/data/TX_TWINT.json` et `/data/TX_WERO.json` dans la base à l’initialisation du projet.  
-- **Aucune route API brute exposée** : les données sont exploitées depuis le dossier `/data/`.  
-- Possibilité d’utiliser des **scripts de seeding AdonisJS** pour automatiser le chargement.
-
----
-
-### 2. Sources de données locales
-
-Les deux fichiers JSON sont **identiques en structure** (même schéma, mêmes clés),  
-mais leurs **contenus diffèrent** (valeurs, montants, devises, origine, etc.).
-
-| Fichier       | Origine | Description | Format |
-|----------------|----------|-------------|---------|
-| `/data/TX_TWINT.json` | 🇨🇭 **App A – TWINT / Swiss Payment Standard** | Données simulées au format des normes suisses (TWINT micro-transaction) | TWINT / Swiss QR Bill / ISO 20022
-| `/data/TX_WERO.json` | 🇪🇺 **App B – WERO / PSD2 Berlin Group** | Données simulées au format des normes européennes (Open Banking EU) | PSD2 Berlin Group
+- **Merge data** from two separate financial systems (App A and App B).  
+- **Load from local JSON files** without external dependencies.  
+- **Modular architecture** to isolate the logic of each application.  
+- **Common management of business logic**, services, and schemas.  
+- **Merge and transform data** into a single format.  
+- **Operational migration** to a complete SQL database.  
 
 ---
 
-### 3. Processus de fusion et de lecture
+## ⚙️ Technical objectives
 
-1. **Chargement initial**  
-   - Les fichiers `/data/TX_TWINT.json` et `/data/TX_WERO.json` sont lus par `DataLoaderService`.  
-   - Chaque entrée est validée, enrichie et préparée pour insertion.  
+### 1. Environment & persistence
 
-2. **Insertion et fusion en base**  
-   - Les enregistrements sont insérés dans MySQL.  
-   - Une table unique regroupe toutes les transactions avec un champ d’origine :  
-     - `"origin": "SWISS"` pour `/data/TX_TWINT.json`  
-     - `"origin": "EU"` pour `/data/TX_WERO.json`.
-
-3. **Lecture depuis `/resources/`**  
-   - Les vues, scripts ou exports dans `/resources/` accèdent directement à la base.  
-   - Aucun dossier `/api/` n’est utilisé : tout est interne et géré par AdonisJS.
+- Use of a **MySQL container (Docker)** to centralize merged data.
+- **Reading and importing** of the `/data/TX_TWINT.json` and `/data/TX_WERO.json` files into the database when the project is initialized.
+- **No raw API routes exposed*
+- **No raw API route exposed**: data is accessed from the `/data/` folder.  
+- Option to use **AdonisJS seeding scripts** to automate loading.
 
 ---
 
-### 4. Normalisation & validation
+### 2. Local data sources
 
-Avant insertion en base, un service de normalisation applique :
+The two JSON files are **identical in structure** (same schema, same keys),  
+but their **contents differ** (values, amounts, currencies, origin, etc.).
 
-- ✅ **Validation de structure** (`user_id`, `merchant_id`, `amount`, `currency_id`, etc.)  
-- 🔄 **Conversion de statuts** → normes ISO 20022 :  
+| File       | Origin | Description | Format |
+|----------------|--------- -|-------------|---------|
+| `/data/TX_TWINT.json` | 🇨🇭 **App A – TWINT / Swiss Payment Standard** | Simulated data in Swiss standard format (TWINT micro-transaction) | TWINT / Swiss QR Bill / ISO 20022
+| `/data/TX_WERO.json` | 🇪🇺 **App B – WERO / PSD2 Berlin Group** | Simulated data in European standard format (Open Banking EU) | PSD2 Berlin Group
+
+---
+
+### 3. Merging and reading process
+
+1. **Initial loading**  
+   - The files `/data/TX_TWINT.json` and `/data/TX_WERO.json` are read by `DataLoaderService`.  
+   - Each entry is validated, enriched, and prepared for insertion.  
+
+2. **Insertion and merging into the database**  
+   - Records are inserted into MySQL.  
+   - A single table groups all transactions with an origin field:  
+     - `“origin”: “SWISS”` for `/data/TX_TWINT.json`  
+     - `“origin”: “EU”` for `/data/TX_WERO.json`.
+
+3. **Reading from `/resources/`**  
+   - Views, scripts, or exports in `/resources/` access the database directly.  
+   - No `/api/` folder is used: everything is internal and managed by AdonisJS.
+
+---
+
+### 4. Normalization & validation
+
+Before insertion into the database, a normalization service applies:
+
+- ✅ **Structure validation** (`user_id`, `merchant_id`, `amount`, `currency_id`, etc.)  
+- 🔄 **Status conversion** → ISO 20022 standards:  
   `completed` → `BOOKED`,
   `pending` → `PENDING`,
   `failed` → `REJECTED`
 
 ---
 
-### 📂 Arborescence globale
+### 📂 Global tree structure
 
 ```bash
+
 /app
- ├── controllers/              # Contrôleurs métier : lecture et fusion des données JSON
- ├── data/                     # Données JSON brutes simulant deux environnements bancaires
- │   ├── TX_TWINT.json                # 🇨🇭 Données TWINT / Swiss Payment Standard
- │   └── TX_WERO.json                # 🇪🇺 Données WERO / PSD2 Berlin Group
- ├── exceptions/               # Gestion des erreurs et exceptions globales
- ├── middleware/               # Middlewares AdonisJS (container bindings, etc.)
+ ├── controllers/              # Business controllers: reading and merging JSON data
+ ├── data/                     # Raw JSON data simulating two banking environments
+ │   ├── TX_TWINT.json                # 🇨🇭 TWINT / Swiss Payment Standard data
+ │   └── TX_WERO.json                # 🇪🇺 WERO / PSD2 Berlin Group data
+ ├── exceptions/               # Global error and exception handling
+ ├── middleware/               # AdonisJS middleware (container bindings, etc.)
  │   └── container_bindings_middleware.ts
- ├── models/                   # Modèles Lucid ORM (liés à la base MySQL)
- │   ├── currency.ts           # Table des devises (ISO 4217)
- │   ├── merchant.ts           # Table des marchands
- │   ├── test.ts               # Modèle de test / sandbox
- │   ├── transaction.ts        # Table principale des transactions
- │   ├── user.ts               # Table des utilisateurs
- │   └── wallet.ts             # Table des portefeuilles électroniques
-/bin                           # Scripts CLI (ex: seed, maintenance)
-/config                        # Configuration AdonisJS (app, database, etc.)
-/database                      # Migrations et seeds pour la base MySQL
-/resources                     # Couche présentation : CSS, JS et templates Edge
+ ├── models/                   # Lucid ORM models (linked to the MySQL database)
+ │   ├── currency.ts           # Currency table (ISO 4217)
+ │   ├── merchant.ts           # Merchant table
+ │   ├── test.ts               # Test model / sandbox
+ │   ├── transaction.ts        # Main transaction table
+ │   ├── user.ts               # User table
+ │   └── wallet.ts             # Electronic wallet table
+/bin                           # CLI scripts (e.g., seed, maintenance)
+/config                        # AdonisJS configuration (app, database, etc.)
+/database                      # Migrations and seeds for the MySQL database
+/resources                     # Presentation layer: CSS, JS, and Edge templates
  │
- ├── css/                      # Feuilles de styles du front-end
+ ├── css/                      # Front-end stylesheets
  │   ├── app.css
  │   ├── dashboard.css
  │   └── home.css
  │
- ├── js/                       # Scripts front-end spécifiques aux vues
+ ├── js/                       # Front-end scripts specific to views
  │   ├── app.js
  │   ├── common.js
  │   ├── dashboard.js
@@ -114,19 +116,14 @@ Avant insertion en base, un service de normalisation applique :
  │   ├── merchant.js
  │   └── pay.js
  │
- ├── views/                    # Templates Edge pour affichage des pages
- │   ├── components/layout/    # Composants réutilisables (layout global)
+ ├── views/                    # Edge templates for displaying pages
+ │   ├── components/layout/    # Reusable components (global layout)
  │   │   └── main.edge
- │   ├── pages/                # Pages de l’application
- │   │   ├── errors/           # Pages d’erreurs (404, 500, etc.)
- │   │   ├── dashboard.edge    # Vue du tableau de bord (transactions agrégées)
- │   │   ├── merchant.edge     # Vue marchands
- │   │   ├── pay.edge          # Vue paiement
- │   │   └── home.edge         # Vue d’accueil / overview
+ │   ├── pages/                # Application pages
+ │   │   ├── errors/           # Error pages (404, 500, etc.)
+ │   │   ├── dashboard.edge    # Dashboard view (aggregated transactions)
+ │   │   ├── merchant.edge     # Merchant view
+ │   │   ├── pay.edge          # Payment view
+ │   │   └── home.edge         # Home view / overview
  │
-/start                         # Initialisation (kernel, routes, providers, etc.)
-
-
-
-
-
+/start                         # Initialization (kernel, routes, providers, etc.)
